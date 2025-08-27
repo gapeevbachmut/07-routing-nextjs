@@ -5,19 +5,24 @@ export interface NotesResponse {
   notes: Note[];
   totalPages: number;
 }
+
+// const perPage = 12;   //  перенести сюди ???
+
 const myKey = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
 const API_URL = 'https://notehub-public.goit.study/api/notes';
 
 export async function fetchNotes(
   search: string,
   page: number,
-  perPage: number
+  perPage: number,
+  tag?: Note['tag']
 ): Promise<NotesResponse> {
   const config = {
     params: {
       search, // пошук -
       page, // сторінка
       perPage, // кількість на сторінці
+      tag,
     },
     headers: {
       accept: 'application/json',
@@ -87,10 +92,3 @@ export const getNotesByTag = async (
 
   return res.data;
 };
-
-//  ???
-//  всі доступні теги як список
-// export const getAllTags = async (): Promise<Note['tag'][]> => {
-//   // повернути статичний список
-//   return ['Todo', 'Work', 'Personal', 'Meeting', 'Shopping'];
-// };

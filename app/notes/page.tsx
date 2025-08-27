@@ -15,9 +15,6 @@ export const metadata: Metadata = {
 export default async function NotesPage() {
   const queryClient = new QueryClient();
 
-  //значення для першого завантаження
-  // const search = '';
-  // const page = 1;
   const perPage = 12;
 
   await queryClient.prefetchQuery({
@@ -26,13 +23,12 @@ export default async function NotesPage() {
     // queryKey: ['notes', { search, page, perPage }],
     queryKey: ['notes', { search: '', page: 1 }],
 
-    // queryFn: () => fetchNotes(search, page, perPage), //   або так
     queryFn: () => fetchNotes('', 1, perPage),
   });
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <NotesClient perPage={12} />
+      <NotesClient perPage={perPage} />
     </HydrationBoundary>
   );
 }
