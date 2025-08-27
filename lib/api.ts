@@ -48,7 +48,7 @@ export const fetchNoteById = async (id: Note['id']): Promise<Note> => {
 
 //  видалення
 
-export async function deleteNote(id: string): Promise<Note> {
+export async function deleteNote(id: Note['id']): Promise<Note> {
   const responce = await axios.delete<Note>(`${API_URL}/${id}`, {
     headers: {
       accept: 'application/json',
@@ -69,3 +69,28 @@ export async function createNote(noteData: CreateNoteType): Promise<Note> {
   });
   return responce.data;
 }
+
+// фільтрація за тегом
+
+export const getNotesByTag = async (
+  tag?: Note['tag']
+): Promise<NotesResponse> => {
+  //tag: Note['tag']
+  const res = await axios.get<NotesResponse>(`${API_URL}`, {
+    params: { tag },
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${myKey}`,
+    },
+  }); // or tag? { tag }:{}
+  console.log('tag', res.data);
+
+  return res.data;
+};
+
+//  ???
+//  всі доступні теги як список
+// export const getAllTags = async (): Promise<Note['tag'][]> => {
+//   // повернути статичний список
+//   return ['Todo', 'Work', 'Personal', 'Meeting', 'Shopping'];
+// };
