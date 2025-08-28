@@ -92,3 +92,9 @@ export const getNotesByTag = async (
 
   return res.data;
 };
+
+// список тегів
+export async function getTags(): Promise<Note['tag'][]> {
+  // Теги фіксовані, тому просто повертаємо масив
+  return ['Todo', 'Work', 'Personal', 'Meeting', 'Shopping'];
+}
