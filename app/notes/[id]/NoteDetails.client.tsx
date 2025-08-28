@@ -36,9 +36,10 @@ const NoteDetailsClient = () => {
         </div>
         <p className={css.content}>{note.content}</p>
         <p className={css.date}>{formattedDate}</p>
-        <Link className={css.back} href="/notes">
+        <Link className={css.back} href="/notes/filter/all">
           Back to notes
         </Link>
+        {/* можна зробити повернення у пошук по тегу */}
       </div>
     </div>
   );
