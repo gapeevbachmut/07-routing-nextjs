@@ -23,12 +23,11 @@ export default function TagsMenu({ tags }: Props) {
           {/* tag: 'Todo' | 'Work' | 'Personal' | 'Meeting' | 'Shopping'; */}
           <li className={css.menuItem}>
             <Link
-              //   href={`url до сторінки за відповідним тегом`}
               href={`/notes/filter/all`}
               onClick={toggle}
               className={css.menuLink}
             >
-              All tags
+              All notes
             </Link>
           </li>
           {tags.map(tag => (

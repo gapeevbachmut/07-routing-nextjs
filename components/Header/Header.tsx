@@ -14,9 +14,6 @@ const Header = async () => {
             <Link href="/">Home</Link>
           </li>
           <li>
-            <Link href="/notes">Notes</Link>
-          </li>
-          <li>
             <TagsMenu
               tags={['Todo', 'Work', 'Personal', 'Meeting', 'Shopping']}
             />

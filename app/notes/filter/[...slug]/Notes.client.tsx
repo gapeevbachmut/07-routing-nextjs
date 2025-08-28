@@ -16,15 +16,13 @@ import { Note } from '@/types/note';
 
 interface Props {
   perPage: number;
-  tag: Note['tag'];
+  tag?: Note['tag'];
 }
 
 export default function NotesClient({ perPage, tag }: Props) {
   const [searchQuery, setSearchQuery] = useState(''); // значення інпута
   const [currentPage, setCurrentPage] = useState(1); // pagination
   const [isModalOpen, setIsModalOpen] = useState(false); //модальне вікно
-
-  // const perPage = 12;
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -40,7 +38,7 @@ export default function NotesClient({ perPage, tag }: Props) {
 
     queryFn: () => fetchNotes(searchQuery, currentPage, perPage, tag),
     refetchOnMount: false, //не робити повторний запит, при монтуванні компонента клієнта
-    placeholderData: keepPreviousData, //  дані відмалюються після запиту - чи треба це тут ???
+    placeholderData: keepPreviousData, //  дані відмалюються після запиту
   });
 
   const handlePageChange = ({ selected }: { selected: number }) => {
@@ -49,21 +47,11 @@ export default function NotesClient({ perPage, tag }: Props) {
 
   return (
     <>
-      <h1>Мої нотатки!</h1>
-      {/* клік сюди - очищати пошуковий запит - потім зробити */}
+      <h1>Мої нотатки {tag ? `(${tag})` : ''}!</h1>
       <div className={css.app}>
         <header className={css.toolbar}>
           <SearchBox onChange={updateSearchQuery} />
 
-          {/* //////////////////////////////// */}
-          {/* {isLoading && <p>Завантаження...</p>}  */}
-
-          {/* {isError && <p>Сталася помилка при завантаженні нотаток.</p>} */}
-
-          {isSuccess && data && data.notes.length === 0 && (
-            <p>Нотаток немає. Додайте першу!</p>
-          )}
-          {/* /////////////////////////////////////// */}
           {isSuccess && data && data.notes.length > 0 && (
             <Pagination
               pageCount={data.totalPages}
@@ -83,6 +71,11 @@ export default function NotesClient({ perPage, tag }: Props) {
         {isSuccess && data && data.notes.length > 0 && (
           <NoteList notes={data.notes || []} />
         )}
+
+        {isSuccess && data && data.notes.length === 0 && (
+          <p>Нотаток немає. Додайте першу!</p>
+        )}
+
         {isModalOpen && (
           <Modal onClose={closeModal}>
             <NoteForm onClose={closeModal} />
