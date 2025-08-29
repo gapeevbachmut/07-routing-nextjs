@@ -3,9 +3,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
 import { fetchNoteById } from '@/lib/api';
-import css from './NoteDetails.page.module.css';
+import css from './NotePreview.module.css';
 import { type Note } from '@/types/note';
-import Link from 'next/link';
 import Modal from '@/components/Modal/Modal';
 import { useRouter } from 'next/navigation';
 
@@ -47,9 +46,6 @@ const NotePreview = () => {
           <p className={css.tag}>{note.tag}</p>
           <p className={css.content}>{note.content}</p>
           <p className={css.date}>{formattedDate}</p>
-          <Link className={css.back} href="/notes/filter/all">
-            Back to notes
-          </Link>
         </div>
       </div>
     </Modal>

@@ -39,7 +39,6 @@ const NoteDetailsClient = () => {
         <Link className={css.back} href="/notes/filter/all">
           Back to notes
         </Link>
-        {/* можна зробити повернення у пошук по тегу */}
       </div>
     </div>
   );
