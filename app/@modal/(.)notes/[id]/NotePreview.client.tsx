@@ -33,6 +33,8 @@ const NotePreview = () => {
     ? `Updated at: ${note.updatedAt}`
     : `Created at: ${note.createdAt}`;
 
+  // await new Promise(r => setTimeout(r, 15000));
+
   return (
     <Modal onClose={() => router.back()}>
       <button className={css.backBtn} onClick={() => router.back()}>

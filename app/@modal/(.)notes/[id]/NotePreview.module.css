@@ -5,12 +5,15 @@
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    background-image: url(../../../../public/fon_note.png);
+    background-size: cover;
 }
 
 .item {
     display: flex;
     flex-direction: column;
     gap: 16px;
+
 }
 
 .header {
@@ -65,4 +68,13 @@
     text-decoration: underline;
     display: inline-block;
     background-color: transparent;
+}
+
+.loading {
+    text-align: center;
+    background-color: #f0f0f0;
+    position: fixed;
+    top: 13%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
